@@ -23,7 +23,7 @@ uv sync          # Python 3.12（.python-version）；Memory Maze 在 macOS 需 
 | E | 跑現成的 diffusion 世界模型 DIAMOND（Atari 預訓練權重）：夢 vs 真實 | 否（約 12 分鐘） | [doc/exp_e.md](doc/exp_e.md) |
 | F | 雙人舞跟舞：給真實男方與音樂，Duolando 生成女方（DD100 Jive），MuJoCo 雙木偶人播放 | 否（約 15 分鐘，下載 7 GB） | [doc/exp_f.md](doc/exp_f.md) |
 | G | Unitree 官方預訓練的 G1 行走策略：MuJoCo 物理中走路、轉彎、抗推 | 否（約 2 分鐘） | [doc/exp_g.md](doc/exp_g.md) |
-| H | YOLO11n-pose + 追蹤抓雙人舞影片：骨架準，但兩人重疊時 ID 會斷、會互換 | 否（約 30 秒） | [doc/exp_h.md](doc/exp_h.md) |
+| H | YOLO11n-pose + 追蹤抓雙人舞影片：兩人重疊時 ID 會斷、會互換；離線合併後身分正確率 66% → 98% | 否（約 30 秒） | [doc/exp_h.md](doc/exp_h.md) |
 
 ## 結構
 
@@ -36,7 +36,7 @@ exp_d/     實驗 D：collect.py（Memory Maze）、evaluate.py（探針＋轉�
 exp_e/     實驗 E：diamond_dream.py（用 external/diamond 的獨立環境執行）
 exp_f/     實驗 F：duolando_follow.py（用 external/duolando 的環境）、render_duet.py、puppet.py（MuJoCo 木偶人）、g1_retarget.py（套到 G1）
 exp_g/     實驗 G：g1_walk.py（官方 G1 行走策略，物理模擬）
-exp_h/     實驗 H：pose_track.py（YOLO 姿態 + 追蹤，雙人舞影片）
+exp_h/     實驗 H：pose_track.py（YOLO 姿態 + 追蹤，雙人舞影片）、merge_ids.py（離線合併 ID）
 external/  第三方程式碼（DIAMOND、Duolando、mujoco_menagerie、unitree_rl_gym），不進 git
 doc/       實驗說明與結果
 data/ out/ models/   資料、輸出、權重（不進 git）

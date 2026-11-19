@@ -50,11 +50,17 @@ def run(path, model, device, out_dir, tracker, width=540):
         times.append(time.perf_counter() - t0)
         ids = r.boxes.id.int().tolist() if r.boxes.id is not None else [-1] * len(r.boxes)
         kps = r.keypoints.xy.cpu().numpy()
-        frames.append({"ids": ids, "area": (r.boxes.xywh[:, 2] * r.boxes.xywh[:, 3]).tolist(),
+        frames.append({"ids": ids, "box": r.boxes.xyxy.cpu().numpy(), "score": r.boxes.conf.cpu().numpy(), "area": (r.boxes.xywh[:, 2] * r.boxes.xywh[:, 3]).tolist(),
                        "gray": [torso_gray(img, k) for k in kps],
                        "kp": r.keypoints.xy.cpu().numpy(), "conf": r.keypoints.conf.cpu().numpy() if r.keypoints.conf is not None else None})
         vw.write(r.plot(boxes=True, labels=True, conf=False))
     vw.release()
+    # 原始偵測存檔，給 merge_ids.py 離線合併 ID：每列一個偵測
+    fr = np.concatenate([[k] * len(f["ids"]) for k, f in enumerate(frames)]).astype(int)
+    np.savez(f"{out_dir}/{name}_dets.npz", frame=fr, fps=fps, size=size,
+             track_id=np.concatenate([f["ids"] for f in frames]).astype(int),
+             box=np.concatenate([f["box"] for f in frames]), score=np.concatenate([f["score"] for f in frames]),
+             kp=np.concatenate([f["kp"] for f in frames]), kp_conf=np.concatenate([f["conf"] for f in frames]))
     return name, fps, size, frames, np.array(times)
 
 
