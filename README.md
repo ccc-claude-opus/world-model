@@ -71,3 +71,22 @@ data/ out/ models/   資料、輸出、權重（不進 git）
 | 實驗 H：YOLO 姿態偵測抓探戈（注意框上的 ID 一直換） |
 |---|
 | ![H](doc/media/exp_h_tango.gif) |
+
+## 授權
+
+本專案的程式碼採用 [GNU AGPL-3.0](LICENSE)（Copyright © 2026 ccc-model）。實驗 A、H 使用的 [Ultralytics](https://github.com/ultralytics/ultralytics) 也是 AGPL-3.0。
+
+`doc/media/` 中的圖片與影片是從下列資料或模型產生的，各自依原始來源的授權：
+
+| 實驗 | 來源 | 授權 |
+|---|---|---|
+| A | OpenCV 範例影片 `vtest.avi` | 隨 [OpenCV](https://github.com/opencv/opencv) 公開散布 |
+| B | [KITTI Tracking](https://www.cvlibs.net/datasets/kitti/) | CC BY-NC-SA 3.0（非商業） |
+| C | [Gymnasium](https://github.com/Farama-Foundation/Gymnasium) CarRacing | MIT |
+| D | [Memory Maze](https://github.com/jurgisp/memory-maze) | MIT |
+| E | [DIAMOND](https://github.com/eloialonso/diamond) 在 Atari 遊戲上的生成畫面 | 程式 MIT；遊戲畫面版權屬原遊戲公司，僅作研究展示 |
+| F | [Duolando](https://github.com/lisiyao21/Duolando) / DD100 | NTU S-Lab License 1.0（非商業） |
+| F、G | [MuJoCo Menagerie](https://github.com/google-deepmind/mujoco_menagerie) Unitree G1、[unitree_rl_gym](https://github.com/unitreerobotics/unitree_rl_gym) | BSD-3-Clause |
+| H | Pexels 影片 [8281169](https://www.pexels.com/video/8281169/)、[30755431](https://www.pexels.com/video/30755431/) | [Pexels License](https://www.pexels.com/license/)，原始影片不收錄於本 repo |
+
+第三方程式碼（`external/`）、資料集（`data/`）與模型權重（`models/`）都不在 repo 中，請依各自授權下載使用。
